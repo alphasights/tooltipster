@@ -1514,9 +1514,11 @@ $.Tooltipster.prototype = {
 					}
 					
 					var finish = function() {
-						
 						// stop the tracker
 						clearInterval(self.__tracker);
+						
+						// don't try to close a destroyed tooltip
+						if (self._$tooltip === null) { return; }
 						
 						// a "beforeClose" option has been asked several times but would
 						// probably useless since the content element is still accessible
